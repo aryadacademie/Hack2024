@@ -10,7 +10,11 @@ import uvicorn
 import hashlib
 from db_models import *
 from crud import *
-
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+from rapidfuzz import process, fuzz
+from genered import generate_questions,write_to_json
 
 # Fonction pour hacher le mot de passe
 def hash_password(password: str) -> str:
@@ -18,6 +22,12 @@ def hash_password(password: str) -> str:
 
 # Initialisation de l'application FastAPI
 app = FastAPI()
+
+# Chemin relatif pour atteindre le dossier App/static depuis le fichier main.py
+static_dir = Path(__file__).resolve().parent.parent / "App" / "static"
+
+# Monter le dossier 'App/static' comme serveur de fichiers statiques
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 # Configuration CORS
 app.add_middleware(
@@ -29,22 +39,54 @@ app.add_middleware(
 )
 
 
+# Modèle pour les requêtes
 class CommandRequest(BaseModel):
     query: str
 
 # Commandes de test
 commands = {
-    "comment ça va":"ça va bien petit , et les etudes?",
-    "bonjour je m'appelle Faria": "Bonjour, merci d’être venu aujourd’hui. Pour commencer, pourquoi avez-vous postulé à ce poste ?",
-    "j'ai postuler au poste d'ingénieur": "Très bien ! Pouvez-vous nous parler d'un projet dont vous êtes particulièrement fier ?",
+    "comment ça va": "ça va bien petit , et les études ?",
+    "bonjour je m'appelle faria": "Bonjour, merci d’être venu aujourd’hui. Pour commencer, pourquoi avez-vous postulé à ce poste ?",
+    "j'ai postulé au poste d'ingénieur": "Très bien ! Pouvez-vous nous parler d'un projet dont vous êtes particulièrement fier ?",
 }
 
 # Endpoint pour traiter les commandes
 @app.post("/endpoint")
 async def process_command(request: CommandRequest):
     query = request.query.lower()
-    response = commands.get(query, "Pouvez-vous reformuler ?")
+
+    # Rechercher la commande la plus proche
+    result = process.extractOne(query, commands.keys(), scorer=fuzz.ratio)
+    
+    if result:
+        closest_match, similarity, _ = result  # Décompressez correctement les 3 valeurs
+        # Définir un seuil pour la similarité (par exemple, 70%)
+        if similarity >= 70:
+            response = commands[closest_match]
+        else:
+            response = "Pouvez-vous reformuler ?"
+    else:
+        response = "Aucune correspondance trouvée."
+
     return {"response": response}
+
+
+# Modèle de la requête pour recevoir les données
+class JobQuery(BaseModel):
+    title: str
+    description: str
+    name_company: str
+
+
+# Créer un endpoint pour recevoir les données
+@app.post("/api/endpoint")
+async def receive_job_query(query: JobQuery):
+    questions = generate_questions(query.title, query.description, query.name_company)
+    # Retourner la réponse avec les données reçues
+    return {"message": "Données reçues avec succès!", "data": questions}
+
+
+
 
 
 # Candidats
@@ -131,5 +173,93 @@ def update_reponse_endpoint(reponse_id: int, update_data: ReponseCreate, db: Ses
         raise HTTPException(status_code=404, detail="Réponse non trouvée ou erreur lors de la mise à jour")
     return {"message": "Réponse mise à jour"}
 
+
+# Route pour servir le fichier HTML
+@app.get("/", response_class=HTMLResponse)
+async def read_index():
+    # Chemin vers le fichier index.html
+    html_path = Path("App\\static\\templates\\home.html")
+    if html_path.exists():
+        html_content = html_path.read_text(encoding="utf-8")
+        return HTMLResponse(content=html_content)
+    return HTMLResponse(content="<h1>Fichier non trouvé</h1>", status_code=404)
+
+
+# Route pour servir le fichier HTML
+@app.get("/about", response_class=HTMLResponse)
+async def read_index():
+    # Chemin vers le fichier index.html
+    html_path = Path("App\\static\\templates\\about.html")
+    if html_path.exists():
+        html_content = html_path.read_text(encoding="utf-8")
+        return HTMLResponse(content=html_content)
+    return HTMLResponse(content="<h1>Fichier non trouvé</h1>", status_code=404)
+
+
+# Route pour servir le fichier HTML
+@app.get("/how", response_class=HTMLResponse)
+async def read_index():
+    # Chemin vers le fichier index.html
+    html_path = Path("App\\static\\templates\\how.html")
+    if html_path.exists():
+        html_content = html_path.read_text(encoding="utf-8")
+        return HTMLResponse(content=html_content)
+    return HTMLResponse(content="<h1>Fichier non trouvé</h1>", status_code=404)
+
+
+# Route pour servir le fichier HTML
+@app.get("/next", response_class=HTMLResponse)
+async def read_index():
+    # Chemin vers le fichier index.html
+    html_path = Path("App\\static\\templates\\next.html")
+    if html_path.exists():
+        html_content = html_path.read_text(encoding="utf-8")
+        return HTMLResponse(content=html_content)
+    return HTMLResponse(content="<h1>Fichier non trouvé</h1>", status_code=404)
+
+# Route pour servir le fichier HTML
+@app.get("/start", response_class=HTMLResponse)
+async def read_index():
+    # Chemin vers le fichier index.html
+    html_path = Path("App\\static\\templates\\start.html")
+    if html_path.exists():
+        html_content = html_path.read_text(encoding="utf-8")
+        return HTMLResponse(content=html_content)
+    return HTMLResponse(content="<h1>Fichier non trouvé</h1>", status_code=404)
+
+
+# Route pour servir le fichier HTML
+@app.get("/interviwers", response_class=HTMLResponse)
+async def read_index():
+    # Chemin vers le fichier index.html
+    html_path = Path("App\\static\\templates\\interviwer.html")
+    if html_path.exists():
+        html_content = html_path.read_text(encoding="utf-8")
+        return HTMLResponse(content=html_content)
+    return HTMLResponse(content="<h1>Fichier non trouvé</h1>", status_code=404)
+
+# Route pour servir le fichier HTML
+@app.get("/congrate", response_class=HTMLResponse)
+async def read_index():
+    # Chemin vers le fichier index.html
+    html_path = Path("App\\static\\templates\\congrate_page.html")
+    if html_path.exists():
+        html_content = html_path.read_text(encoding="utf-8")
+        return HTMLResponse(content=html_content)
+    return HTMLResponse(content="<h1>Fichier non trouvé</h1>", status_code=404)
+
+
+@app.get("/interview_page", response_class=HTMLResponse)
+async def read_index():
+   
+    html_path = Path("App\\static\\templates\\interview_page.html")
+    if html_path.exists():
+        html_content = html_path.read_text(encoding="utf-8")
+        return HTMLResponse(content=html_content)
+    return HTMLResponse(content="<h1>Fichier non trouvé</h1>", status_code=404)
+
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
+

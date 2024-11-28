@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/stylenext.css">
+    <title>Qcm</title>
+</head>
+<body>
+
+    <nav style="height: 40px;">
+        <div>
+            <p><a href="http://127.0.0.1:8000/">logo</a></p>
+        </div>
+    </nav>
+    <style>
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: #3a414a;
+            cursor: pointer;
+        }
+       
+    </style>
+   
+
+    <main style="display: flex;flex-direction: column;height: 79vh;margin-top: 50px;">
+        <section style="gap: 70px; display: flex;flex-direction: row;justify-content: center;align-items: center;">
+
+
+            <section style="gap: 20px; border: 2px #957195 solid; height: 360px;width: 300px;border-radius: 12px;display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                <div style="display: flex;flex-direction: column;gap: 10px;">
+
+                    <div style="gap: 10px; display: flex;flex-direction: row;align-items: center;">
+                        
+                        <div style="height: 70px;width: 70px;">
+                            <img src="/static/icons/Website flowchart - Page 1.png" alt="" srcset="" width="100%" height="100%">
+                        </div>
+                        
+                        <div>
+                            <p>step1</p>
+                            <p>Job Description</p>
+                        </div>
+                    
+                    </div>
+
+                    <div style="gap: 12px; display: flex;flex-direction: row;align-items: center;">
+                        
+                        <div style="margin-left: 8px; height: 70px;width: 60px;"><img src="/static/icons/Website flowchart - Page2.png" alt="" srcset="" width="100%" height="100%"></div>
+                        
+                        <div>
+                            <p>step2</p>
+                            <p>MCQ</p>
+                        </div>
+
+                    </div>
+
+                    <div style="display: flex;flex-direction: row;align-items: center;gap: 10px;">
+                        
+                        <div style="height: 70px;width: 70px;">
+                            <img src="/static/icons/Website flowchart - Page 3.png" alt="" srcset="" width="100%" height="100%">
+                        </div>
+
+                        <div>
+                            <p>step3</p>
+                            <p>Interviewer Profile</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <style>
+                    #circle-1{
+                        border: 3px #e08fff solid;
+                        height: 20px;
+                        width: 20px;
+                        border-radius: 12px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        background-color:#e08fff;
+
+                    }
+                    #circle-2{
+                        border: 3px #e08fff solid;
+                        height: 20px;width: 20px;
+                        border-radius: 12px;
+                        
+                        
+                    }
+                    #circle-3{
+                        border: 3px #979ea8 solid;
+                        height: 20px;
+                        width: 20px;
+                        border-radius: 12px;
+                        background-color:#979ea8;
+                        
+                    }
+                </style>
+
+                <div style="justify-content: center;align-items: center; display: flex;flex-direction: column;height: 50vh;width: 25px;">
+                    <div style="border-radius: 4px 4px 0px 0px; background-color: #e08fff;height: 30px;width: 6px;">
+
+                    </div>
+
+                    <div id="circle-1">
+                        <img src="/static/icons/check.png" alt="" height="70%" width="70%">
+                    </div>
+                    <div style="width: 6px; background-color: #e08fff;height: 25px;">
+
+                    </div>
+                    <div style="width: 6px; background-color:#e08fff;height: 50px;">
+
+                    </div>
+                    <div id="circle-2">
+                        
+                    </div>
+                    <div style="width: 6px; background-color: #e08fff;height: 30px;">
+
+                    </div>
+                    <div style="width: 6px; background-color: #979ea8;height: 40px;">
+
+                    </div>
+                    <div id="circle-3">
+                        
+                    </div>
+
+                    <div style="border-radius: 0px 0px 4px 4px; width: 6px; background-color: #979ea8;height: 50px;">
+
+                    </div>
+
+                </div>
+            </section>
+
+            <div class="progress-circle" style="width: 100px;height: 100px;" >
+                <div class="timer" id="timer">10</div>
+                <svg>
+                  <circle cx="50" cy="50" r="45"></circle>
+                  <circle cx="50" cy="50" r="45" id="progress"></circle>
+                </svg>
+              </div>
+<style>
+    .progress-circle {
+        position: absolute;
+        top: 45px;
+        right: 390px;
+        background-color: #ffff;
+}
+
+body{
+    background-color: #ffff;
+}
+
+circle {
+  fill: none;
+  stroke-width: 10;
+}
+
+circle:first-of-type {
+  stroke: rgba(153, 61, 138, 0.5); /* Couleur du fond */
+}
+
+#progress {
+  stroke: #3e0356; /* Couleur de progression */
+  stroke-dasharray: 283; /* Circumference du cercle (2 * Math.PI * 45) */
+  stroke-dashoffset: 283; /* Par défaut, tout est masqué */
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.timer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+</style>
+
+
+
+
+              
+
+<section id="op">
+    <div class="question-box" id="questionBox">
+        <!-- Les questions dynamiques apparaîtront ici -->
+    </div>
+
+    <div style="display: flex; justify-content: flex-end;">
+        <button class="next-btn" id="nextQuestionBtn">
+            <img src="/static/icons/Website flowchart - Page.png" alt="Next" width="100%" height="100%">
+        </button>
+    </div>
+</section>
+
+<script src="/static/js/scriptsnext.js"></script>
+            
+        </section>
+        
+        <section style="display: flex;flex-direction: row;justify-content: flex-end;align-items: center;height: 50px;">
+            <button onclick="triggerLink()" type="button" style="background-color: #c8a2c8; width: 130px;height: 35px;margin-right: 30px;border-radius: 20px;border: 2px #e08fff solid;">Next</button>
+        </section>
+    </main>
+   
+    <script>
+        function triggerLink() {
+    window.location.href = "http://127.0.0.1:8000/interviwers";
+    }
+    </script>
+    
+    
+</body>
+</html>
