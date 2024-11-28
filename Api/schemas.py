@@ -52,7 +52,7 @@ class EntretienResponse(BaseModel):
     score_final: int
     commentaires_generaux: Optional[str] = None
     questions: List[QuestionResponse] = []
-    reponses: List[str] = []  # Si `ReponseResponse` est nécessaire, remplacez `str` par `ReponseResponse`
+    reponses: List[str] = []
 
  
 
