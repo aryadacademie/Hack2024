@@ -10,7 +10,7 @@ function sendDataToAPI() {
         return;
     }
 
-    // URL de l'API (remplacez cette URL par l'URL de votre API)
+    // URL de l'API
     const apiUrl = 'http://127.0.0.1:8000/api/endpoint';
 
     // Créer l'objet de données à envoyer
@@ -26,23 +26,23 @@ function sendDataToAPI() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)  // Convertir l'objet en JSON
+        body: JSON.stringify(data) // Convertir l'objet en JSON
     })
-    .then(response => response.json())  // Convertir la réponse en JSON
-    .then(data => {
-        console.log('Réponse de l\'API:', data);
-        alert("Données envoyées avec succès!");
-        document.getElementById('title').innerHTML=""
-        window.location.href = "http://127.0.0.1:8000/next";
-    })
-    .catch((error) => {
-        console.error('Erreur:', error);
-        alert("Une erreur est survenue lors de l'envoi.");
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erreur lors de l'envoi des données: ${response.status}`);
+            }
+            return response.json(); // Convertir la réponse en JSON
+        })
+        .then(data => {
+            console.log('Réponse de l\'API:', data);
+            alert("Données envoyées avec succès!");
+
+            // Redirection après succès
+            window.location.href = "http://127.0.0.1:8000/next";
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+            alert("Une erreur est survenue lors de l'envoi.");
+        });
 }
-
-
-
-
-
-

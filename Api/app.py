@@ -14,7 +14,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 from rapidfuzz import process, fuzz
-from genered import generate_questions,write_to_json
+from genered import generate_questions,write_to_json,get_and_remove_first_object
 
 # Fonction pour hacher le mot de passe
 def hash_password(password: str) -> str:
@@ -78,15 +78,32 @@ class JobQuery(BaseModel):
     name_company: str
 
 
-# Créer un endpoint pour recevoir les données
+# Endpoint pour recevoir les données
 @app.post("/api/endpoint")
 async def receive_job_query(query: JobQuery):
-    questions = generate_questions(query.title, query.description, query.name_company)
-    # Retourner la réponse avec les données reçues
-    return {"message": "Données reçues avec succès!", "data": questions}
+    # Écriture des données dans un fichier JSON
+    write_to_json(query.dict())  # Remplacez "temp.json" par le chemin réel du fichier
+
+    # Retour de confirmation
+    return {"message": "Données reçues avec succès!"}
 
 
+@app.get("/api/quiz/endpoint")
+async def receive_job_query():
+    # Récupérer le premier objet JSON
+    data = get_and_remove_first_object()
+    print(data)
+    if not data:
+        return {"message": "Aucune donnée disponible", "data": []}
 
+    # Générer les questions
+    questions = generate_questions(data['title'], data['description'], data['name_company'])
+
+    if not questions:
+        return {"message": "Aucune question générée", "data": []}
+
+    # Retourner les questions
+    return {"message": "Questions générées avec succès!", "data": questions}
 
 
 # Candidats

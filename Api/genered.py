@@ -112,3 +112,37 @@ def generate_questions(title, description, company_name):
     
     return questions
 
+
+def get_and_remove_first_object(file_path=JSON_FILE_PATH):
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        return None
+
+    if not data:
+        return None
+
+    # Récupérer le premier élément
+    first_object = data.pop(0)
+
+    # Réécrire le fichier avec les données restantes
+    with open(file_path, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+
+    return first_object
+
+
+
+
+def write_to_json(data: dict, file_path=JSON_FILE_PATH):
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            existing_data = json.load(file)
+    except FileNotFoundError:
+        existing_data = []
+
+    existing_data.append(data)
+
+    with open(file_path, "w", encoding="utf-8") as file:
+        json.dump(existing_data, file, indent=4, ensure_ascii=False)

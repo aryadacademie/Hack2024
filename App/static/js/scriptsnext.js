@@ -3,17 +3,13 @@ let questions = [];
 let currentIndex = 0;
 
 async function loadQuestions() {
-    const title = "Développeur Python";
-    const description = "Responsable de la création et maintenance des applications Python.";
-    const name_company = "TechCorp";
-
+    
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/endpoint', {
-            method: 'POST',
+        const response = await fetch('http://127.0.0.1:8000/api/quiz/endpoint', {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ title, description, name_company })
         });
 
         if (!response.ok) throw new Error('Erreur lors de la récupération des questions');
@@ -47,7 +43,7 @@ function loadQuestion(index) {
         optionContainer.innerHTML = `
             <div>${option}</div>
             <div class="circle-in">
-                <img src="static/icons/check.png" alt="Check" height="70%" width="70%">
+                <img src="/static/icons/check.png" alt="Check" height="70%" width="70%">
             </div>
         `;
         optionContainer.addEventListener("click", () => selectOption(optionContainer));
@@ -81,7 +77,7 @@ loadQuestions();
 
 
 
-    const timerElement = document.getElementById('timer');
+const timerElement = document.getElementById('timer');
 const progressCircle = document.getElementById('progress');
 
 // Temps total en secondes
