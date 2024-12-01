@@ -7,6 +7,9 @@
 </head>
 
 <style>
+    a:active{
+        color: #2123bb;
+    }
     li{
         list-style: none;
     }
@@ -23,7 +26,7 @@
 
         <div style="width: 300px;">
             <ul style="display: flex;justify-content: space-between;">
-                <li><a href="http://127.0.0.1:8000/">Home</a></li>
+                <li><a href="http://127.0.0.1:8000/" style="color: #2123bb;">Home</a></li>
                 <li><a href="http://127.0.0.1:8000/about">About</a></li>
                 <li><a href="http://127.0.0.1:8000/how">How it works</a></li>
             </ul>
@@ -108,5 +111,26 @@
         timer = setInterval(display, 300);
     </script>
     
+<script>
+    const OpenAI = require('openai');
+const client = new OpenAI({
+    baseURL: 'https://api.studio.nebius.ai/v1/',
+    apiKey: process.env.NEBIUS_API_KEY,
+});
+
+client.chat.completions.create({
+  "temperature": 0.6,
+  "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+  "messages": [
+    {
+      "role": "user",
+      "content": "bonjour comment ça va?"
+    }
+  ]
+})
+    .then((completion) => console.log(completion));
+
+</script>
+
 </body>
 </html>

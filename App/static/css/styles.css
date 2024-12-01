@@ -80,12 +80,10 @@
       }
 
       .reply {
-          font-style: italic;
-          color: green;
           border-radius: 4px;
           padding: 12px;
-          width: 200px;
-          background-color: aqua;
+          width: 100%;
+          background-color: #e08fff;
       }
 
       .error {

@@ -41,7 +41,7 @@
                     <div style="gap: 10px; display: flex;flex-direction: row;align-items: center;">
 
                         <div style="height: 70px;width: 70px;">
-                            <img src="/static/icons/Website flowchart - Page 1.png" alt="" srcset="" width="100%"
+                            <img src="/static/icons/job.svg" alt="" srcset="" width="100%"
                                 height="100%">
                         </div>
 
@@ -55,7 +55,7 @@
                     <div style="gap: 12px; display: flex;flex-direction: row;align-items: center;">
 
                         <div style="margin-left: 8px; height: 70px;width: 60px;"><img
-                                src="/static/icons/Website flowchart - Page2.png" alt="" srcset="" width="100%"
+                                src="/static/icons/qcm.svg" alt="" srcset="" width="100%"
                                 height="100%"></div>
 
                         <div>
@@ -68,7 +68,7 @@
                     <div style="display: flex;flex-direction: row;align-items: center;gap: 10px;">
 
                         <div style="height: 70px;width: 70px;">
-                            <img src="/static/icons/Website flowchart - Page 3.png" alt="" srcset="" width="100%"
+                            <img src="/static/icons/interviews.svg" alt="" srcset="" width="100%"
                                 height="100%">
                         </div>
 
@@ -164,11 +164,33 @@
             </div>
 
             <script>
+                function voiceHiringmanager() {
+                    choice_interviewer("Atik Bakkali");
+                    localStorage.setItem("selectedVoice","homme");
+                    localStorage.setItem("interviewer", document.getElementById("interview_Hiring").value);
+                    flou();
+                }
+
+                function voiceHRgmanager() {
+                    choice_interviewer("Amina Ouazzani");
+                    localStorage.setItem("selectedVoice","femme");
+                    localStorage.setItem("interviewer", document.getElementById("interview_RH").value);
+                    flou();
+                }
+
+                function voiceinterview_Technicalgmanager() {
+                    choice_interviewer("Youssef Laarabi");
+                    localStorage.setItem("selectedVoice","dave");
+                    localStorage.setItem("interviewer", document.getElementById("interview_Technical").value);
+                    flou();
+                }
+
+
                 function flou() {
                     const main = document.querySelector("#main");
                     const message = document.querySelector("#message");
                     const acceptLink = document.querySelector("#acceptLink"); // Correcte le nom ici
-
+                    
                     // Ajoute l'effet de flou au body
                     main.style.opacity = "0.3"; // Applique une opacité réduite pour donner l'effet de flou
                     message.style.display = "flex"; // Affiche le message
@@ -192,9 +214,9 @@
                 style="margin-top: 50px; display: flex;flex-direction: column;height: 400px; width: 850px;border-radius: 12px;align-items: center;">
 
 
-                <div onclick="flou()" style="display: flex;flex-direction: row;gap: 25px;margin-top: 30px;">
+                <div   style="display: flex;flex-direction: row;gap: 25px;margin-top: 30px;">
 
-                    <div
+                    <div onclick="voiceHiringmanager()"
                         style="width: 250px;height: 270px;background-color:rgb(195, 247, 200);flex-direction: column;display: flex;justify-content: center;align-items: center;">
 
                         <div style="height: 169px;width: 200px;margin-top: 20px;background-color: rgb(240, 248, 255);">
@@ -203,12 +225,12 @@
                         </div>
 
                         <div style="text-align: center;">
-                            <p><b>Atik Bakkali</b><br> Hiring Manager</p>
+                            <p id="interview_Hiring"><b>Atik Bakkali</b><br> Hiring Manager</p>
                         </div>
 
                     </div>
 
-                    <div
+                    <div onclick="voiceHRgmanager() "
                         style="width: 250px;height: 270px;background-color:rgb(255, 217, 217);flex-direction: column;display: flex;justify-content: center;align-items: center;">
 
                         <div style="height: 169px;width: 200px;margin-top: 20px;background-color: aliceblue;">
@@ -217,12 +239,12 @@
                         </div>
 
                         <div style="text-align: center;">
-                            <p><b>Amina Ouazzani</b> <br>
+                            <p id="interview_RH"><b>Amina Ouazzani</b> <br>
                                 HR Manager</p>
                         </div>
                     </div>
 
-                    <div
+                    <div onclick="voiceinterview_Technicalgmanager()"
                         style="width: 250px;height: 270px;background-color: rgb(207, 228, 255); flex-direction: column;display: flex;justify-content: center;align-items: center;">
 
                         <div style="height: 169px;width: 200px;margin-top: 20px;background-color: aliceblue;">
@@ -231,7 +253,7 @@
                         </div>
 
                         <div style="text-align: center;">
-                            <p><b>Youssef Laarabi </b><br> Technical Expert</p>
+                            <p id="interview_Technical"><b>Youssef Laarabi </b><br> Technical Expert</p>
                         </div>
 
                     </div>
@@ -256,6 +278,45 @@
                     mock Interview</a>)</p>
         </div>
     </div>
+
+
+    <script>
+        async function choice_interviewer(number) {
+    // Préparer les données à envoyer
+    const choiceData = {
+        interviewer_number: number // Le numéro de l'intervieweur
+    };
+
+    console.log("Numéro d'intervieweur envoyé :", choiceData); // Debug
+
+    // URL de l'API pour envoyer le numéro d'intervieweur
+    const apiUrl = "http://127.0.0.1:8000/api/interview/choose-interviewer"; // Remplacez par l'URL réelle de votre API
+
+    try {
+        // Effectuer la requête POST
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(choiceData) // Convertir l'objet en JSON
+        });
+
+        // Vérifier si la réponse est OK
+        if (!response.ok) {
+            throw new Error(`Erreur lors de l'envoi du numéro d'intervieweur : ${response.statusText}`);
+        }
+
+        // Essayer de récupérer les données JSON de la réponse
+        const data = await response.json();
+        console.log("Numéro d'intervieweur enregistré avec succès :", data);
+
+    } catch (error) {
+        console.error("Erreur lors de l'envoi du numéro d'intervieweur :", error);
+    }
+}
+
+    </script>
 
 </body>
 

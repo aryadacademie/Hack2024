@@ -1,69 +1,68 @@
 
-        #op {
-            border: 2px #957195 solid;
-            height: 420px;
-            width: 745px;
-            border-radius: 12px;
-            padding: 32px;
-            box-sizing: border-box;
-        }
-        .question-box {
-            gap: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 58vh;
-        }
-        h3 {
-            text-align: left;
-            width: 100%;
-            margin: 0;
-        }
-        .in_put {
-            border: 2px #957195 solid;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: rgba(255, 182, 244, 0.5);
-            width: 100%;
-            cursor: pointer;
-        }
-        .in_put.selected {
-            background-color: #e08fff;
-            color: white;
-        }
-        .circle-in {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: white;
-            border: 2px #957195 solid;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .circle-in img {
-            display: none;
-        }
+#op {
+    border: 2px #957195 solid;
+    height: 420px;
+    width: 745px;
+    border-radius: 12px;
+    padding: 32px;
+    box-sizing: border-box;
+}
+.question-box {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 58vh;
+}
+h3 {
+    text-align: left;
+    width: 100%;
+    margin: 0;
+}
+.in_put {
+    border: 2px #957195 solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 182, 244, 0.5);
+    width: 100%;
+    cursor: pointer;
+}
+.in_put.selected {
+    background-color: #e08fff;
+    color: white;
+}
+.circle-in {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px #957195 solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.circle-in img {
+    display: none;
+}
 
-        .in_put.selected .circle-in {
-            background-color: white;
-            border: 2px #957195 solid;
-        }
-        .in_put.selected .circle-in img {
-            display: block;
-        }
-        .next-btn {
-            border: none;
-            background-color: #e08fff;
-            width: 40px;
-            padding: 2px;
-            border-radius: 20px;
-            height: 40px;
-            cursor: pointer;
-        }
+.in_put.selected .circle-in {
+    background-color: white;
+    border: 2px #957195 solid;
+}
+.in_put.selected .circle-in img {
+    display: block;
+}
+.next-btn {
+    border: none;
+    background-color: #e08fff;
+    width: 40px;
+    padding: 2px;
+    border-radius: 20px;
+    height: 40px;
+    cursor: pointer;
+}
 
-       

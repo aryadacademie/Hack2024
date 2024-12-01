@@ -68,14 +68,18 @@
             <div style=" display: flex;flex-direction:column;">
                 <div style="display: flex;flex-direction: row;gap: 10px;align-items: center;">
                     <p>job role -</p>
-                    <p style="color: #6db1ff;">{job role}</p>
+                    <p id="jobrole" style="color: #6db1ff;"></p>
                     
                 </div>
                 <div style="display: flex;flex-direction:row;gap: 10px;justify-content: center;align-items: center;">
                     <p>interviewer -  </p>
-                    <p style="color: #6db1ff;">{name_role}</p>
+                    <p id="namerole" style="color: #6db1ff;"></p>
                 </div>
             </div>
+            <script>
+                let namerol = document.getElementById("namerole");
+                namerol.innerHTML=localStorage.getItem("interviewer");
+            </script>
             <div style=" display: flex;flex-direction:column;gap: 2px;justify-content: center;align-items: center;">
                     <div class="progress-circle" style="width: 100px;height: 100px;" >
                         <div class="timer"  style="color: #99e9a0;"><span id="timer">10</span>%</div>
@@ -119,7 +123,7 @@
         .timer {
           position: absolute;
           top: 39%;
-          left: 33%;
+          left: 30%;
           margin-left: 12px;
           transform: translate(-50%, -50%);
           font-size: 24px;
@@ -146,15 +150,43 @@
         <div style=" display: flex;flex-direction:column;padding-right: 20px;">
             <div style="display: flex;flex-direction: row;gap: 102px;justify-content: center;align-items: center;">
                 <p>MCQ test  - </p>
-                <p style="color: #54c45e;">--%</p>
+                <p  style="color: #54c45e;"><span id="testnote"></span><span>%</span></p>
                 
             </div>
             <div style="display: flex;flex-direction:row;gap: 102px;justify-content: center;align-items: center;">
                 <p>interview  -  </p>
-                <p style="color:#e81313;">--%</p>
+                <p style="color:#e81313;"><span id="interviewnote"></span><span>%</span></p>
             </div>
         </div>
 
+       
+
+<style>
+    .question-container {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .question-details p {
+        margin: 0;
+    }
+
+    button.details-btn {
+        background-color: #635dff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button.details-btn:hover {
+        background-color: #4e4ac4;
+    }
+</style>
 
         
     </section>
@@ -169,76 +201,39 @@
                 <h3>Scores</h3>
             </div>
     
-            <div style="padding-left: 20px;padding-right: 12px; border-radius: 18px; border: 2px #6db1ff solid; display: flex;flex-direction: row;justify-content: space-between;">                                                                                               
+            <div style="gap: 20px; align-items: center; border-radius: 18px; flex-direction:column;display: flex;border: 2px #6db1ff solid;">                                                                                               
                 
-                <div style="gap: 60px; align-items: center; display: flex;flex-direction: row;">
-                    <p>MCQ test report</p>
-                <p style="color: #54c45e;"> --%</p>
+                <div style="width: 750px; height: 50px;align-items: center;  padding-right: 12px;padding-left: 12px; justify-content: space-between; display: flex;flex-direction: row;">
+                    <div style="gap: 60px; align-items: center; display: flex;flex-direction: row;">
+                        <p>MCQ test report</p>
+                    <p style="color: #54c45e;" ><span id="testnote2"></span><span>%</span></p>
+                    </div>
+                    
+                    <div style="align-items: center; display: flex;flex-direction: row;gap: 10px;">
+                        <p style="color: #635dff;">view  details </p>
+                        <select name="" id="" style="height: 20px; width: 20px;border-radius: 20px;border: 2px #635dff solid ;" ></select>
+                    </div>
                 </div>
                 
-                <div style="align-items: center; display: flex;flex-direction: row;gap: 10px;">
-                    <p style="color: #635dff;">view  details </p>
-                    <select name="" id="" style="height: 20px; width: 20px;border-radius: 20px;border: 2px #635dff solid ;" ></select>
-                </div>
+                <div id="quiz_main-container" style="display: flex;flex-direction: column;gap: 20px;width: 750px;"></div> 
             </div>
 
-            <div style="height: 92vh; gap: 20px; align-items: center; border-radius: 18px; flex-direction:column;display: flex;border: 2px #6db1ff solid;">
-                
-                <div style="height: 50px;align-items: center;  padding-right: 12px;padding-left: 12px; justify-content: space-between; display: flex;flex-direction: row;">
-                    
-                    <div style="gap: 60px; width: 750px; display: flex;flex-direction: row;margin-top: 20px;">
+            <div style="gap: 20px; align-items: center; border-radius: 18px; flex-direction:column;display: flex;border: 2px #6db1ff solid;">
+
+                <div style="width: 750px; height: 50px;align-items: center;  padding-right: 12px;padding-left: 12px; justify-content: space-between; display: flex;flex-direction: row;">
+                    <div style="gap: 60px; align-items: center; display: flex;flex-direction: row;">
                         <p>Interview report</p>
-                    <p style="color: #54c45e;">--%</p>
+                    <p style="color: #54c45e;" ><span id="interviewnote2"></span><span>%</span></p>
                     </div>
                     
-                    <div style="gap: 10px; align-items: center; display: flex;flex-direction: row;">
+                    <div style="align-items: center; display: flex;flex-direction: row;gap: 10px;">
                         <p style="color: #635dff;">view  details </p>
-                        <select  style="height: 20px; width: 20px;border-radius: 20px;border: 2px #635dff solid ;" name="" id=""></select>
+                        <select name="" id="" style="height: 20px; width: 20px;border-radius: 20px;border: 2px #635dff solid ;" ></select>
                     </div>
-
                 </div>
 
-                <div style="align-items: center; padding-left: 20px;padding-right: 20px; justify-content: center;align-items: center;border-radius: 18px; height: 40px; width: 800px; justify-content: space-between; border: 2px #6db1ff solid; display: flex;flex-direction: row;">
-                    <div>Q1: Describe your experience with ..... </div>
-                    <div style="display: flex;gap: 50px;">
-                        <div style="color: #54c45e;">--% </div>
-                    <select style="height: 20px; width: 20px;border-radius: 20px;border: 2px #635dff solid ;" name="" id=""></select>
                 
-                    </div> 
-                </div> 
-
-                <div style="padding-left: 20px;padding-right: 20px;padding-bottom: 20px; align-content: center; border-radius: 18px;  width: 800px; height: 54vh; gap: 10px; display: flex;flex-direction: column; border: 1px #6db1ff solid;">
-                    
-                    <div style="align-items: center; margin-top: 20px; justify-content: space-between;display: flex;flex-direction: row;">
-                        <div>Q2: Explain the difference  between.....</div>
-                        
-                        <div style="display: flex;gap: 50px;">
-                            <div style="color: #54c45e;">--% </div>
-                        <select style="height: 20px; width: 20px;border-radius: 20px;border: 2px #635dff solid ;" name="" id=""></select>
-                    
-                        </div>
-
-                        </div>
-
-                    <div style="gap: 20px;width: 770px;display: flex;align-items: center; flex-direction: column;">
-                        <div style="width: 750px;">
-                            <p style="color:#e81313;">Your answer : </p>
-                        </div>
-
-                        <div style="width: 750px; border: 1px #ced4db solid;"></div>
-    
-                        <div style="width: 750px;">
-                            <p style="color: #54c45e;">Correct answer :</p>
-                        </div>
-
-                        <div style="width: 750px; border: 1px #ced4db solid;"></div>
-    
-                        <div style="width: 750px;">
-                            <p style="color: #635dff;">Feedback : </p>
-                        </div>
-                    </div>
-
-                </div>
+                <div id="quiz-container" style="display: flex;flex-direction: column;gap: 20px;width: 750px;"></div> 
 
             </div>
     </div>
@@ -246,8 +241,17 @@
     </main>
 
     <div style="width: 180vh;color: #635dff; display: flex;flex-direction: row;justify-content: flex-end;margin-top: 20px;margin-bottom: 20px;">
-        <button type="button" style=" width: 150px;height: 35px; background-color: #dedeff;border-radius: 20px;border: 2px #dfe3e8 solid;">Go Home</button>
+        <button onclick="gohome()" type="button" style=" width: 150px;height: 35px; background-color: #dedeff;border-radius: 20px;border: 2px #dfe3e8 solid;">Go Home</button>
     </div>
-  
+
+    <script>
+        function gohome() {
+    window.location.href = "http://127.0.0.1:8000/";
+    }
+    </script>
+    
+
+
+  <script src="/static/js/congrate.js"></script>
 </body>
 </html>

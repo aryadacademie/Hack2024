@@ -43,7 +43,7 @@
                     <div style="gap: 10px; display: flex;flex-direction: row;align-items: center;">
                         
                         <div style="height: 70px;width: 70px;">
-                            <img src="/static/icons/Website flowchart - Page 1.png" alt="" srcset="" width="100%" height="100%">
+                            <img src="/static/icons/job.svg" alt="" srcset="" width="100%" height="100%">
                         </div>
                         
                         <div>
@@ -55,7 +55,7 @@
 
                     <div style="gap: 12px; display: flex;flex-direction: row;align-items: center;">
                         
-                        <div style="margin-left: 8px; height: 70px;width: 60px;"><img src="/static/icons/Website flowchart - Page2.png" alt="" srcset="" width="100%" height="100%"></div>
+                        <div style="margin-left: 8px; height: 70px;width: 60px;"><img src="/static/icons/qcm.svg" alt="" srcset="" width="100%" height="100%"></div>
                         
                         <div>
                             <p>step2</p>
@@ -67,7 +67,7 @@
                     <div style="display: flex;flex-direction: row;align-items: center;gap: 10px;">
                         
                         <div style="height: 70px;width: 70px;">
-                            <img src="/static/icons/Website flowchart - Page 3.png" alt="" srcset="" width="100%" height="100%">
+                            <img src="/static/icons/interviews.svg" alt="" srcset="" width="100%" height="100%">
                         </div>
 
                         <div>
@@ -146,37 +146,32 @@
 
                     <div style="display: flex;flex-direction: column;gap: 15px;">
                         <label for="">Job Title</label>
-                        <input id="title" class="in_put" type="text">
+                        <input style="padding-left: 10px;" id="title" class="in_put" type="text" placeholder="What is the role you're applying for?">
                     </div>
                     
                     <div style="display: flex;flex-direction: column;gap: 15px;">
                         <label for="">Job Description</label>
-                        <textarea class="in_put" id="description"></textarea>
+                        <textarea class="in_put" id="description" placeholder="Paste the job description here"></textarea>
                     </div>
                    
                     <style>
                         #description{
                             height: 100px;
+                            padding-left: 10px;
                         }
                     </style>
 
                     <div style="display: flex;flex-direction: column;gap: 15px;">
                         <label for="">Campany Name</label>
-                        <input class="in_put" type="text" id="name_company">
+                        <input style="padding-left: 10px;" class="in_put" type="text" id="name_company" placeholder="Enter the name of the company you're applying to ">
                     </div>
                 </form>
             </section>
         </section>
         <section style="display: flex;flex-direction: row;justify-content: flex-end;align-items: center;height: 50px;">
-            <button onclick="triggerLink()" type="button" style="border: 2px #e08fff solid;background-color: #c8a2c8; width: 95px;height: 35px;margin-right: 50px;border-radius: 20px;">Next</button>
+            <button onclick="sendDataToAPI()" id="submite" type="button" style="border: 2px #e08fff solid;background-color: #c8a2c8; width: 95px;height: 35px;margin-right: 50px;border-radius: 20px;">Next</button>
         </section>
     </main>
-    <script>
-        function triggerLink() {
-            sendDataToAPI();
-    
-    }
-    </script>
 
     <script src="static/js/scripts3.js"></script>
     

@@ -6,3 +6,4 @@ from .db_models import *
 from .schemas import *
 from genered import *
 from database import *
+from utilisateur import *
