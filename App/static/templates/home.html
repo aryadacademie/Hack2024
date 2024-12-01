@@ -2,135 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/css/page_home.css">
+    <script src="static/js/page_home.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 </head>
-
 <style>
-    a:active{
-        color: #2123bb;
-    }
-    li{
-        list-style: none;
-    }
     a{
         text-decoration: none;
-        color: #3a414a;
-        cursor: pointer;
+        color: #8987A1;
     }
-   
+    body{
+    background-color: #44B4A00D;
+    background-image: url("static/icons/icon_background_body.svg");
+}
 </style>
 <body>
-    <nav style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-        <div><a href="http://127.0.0.1:8000/">logo</a></div>
-
-        <div style="width: 300px;">
-            <ul style="display: flex;justify-content: space-between;">
-                <li><a href="http://127.0.0.1:8000/" style="color: #2123bb;">Home</a></li>
-                <li><a href="http://127.0.0.1:8000/about">About</a></li>
-                <li><a href="http://127.0.0.1:8000/how">How it works</a></li>
+    <nav id="nav">
+        <div id="logo">
+            <a href="http://127.0.0.1:8000/"><img src="static/icons/logo.svg" alt="" width="100%" height="100%"></a>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a href="http://127.0.0.1:8000/" style="color: #252432;">Home</a> </li>
+                <li ><a href="http://127.0.0.1:8000/about">About</a></li>
+                <li><a href="http://127.0.0.1:8000/how">How it Works</a></li>
             </ul>
         </div>
-
         <div>
-            <button onclick="triggerLink()" type="button" style="border: 2px #3a414a solid; border-radius: 20px;height: 32px;width: 120px;cursor: pointer;">Get Started</button>
+            <button id="btn_start"><b>Get Started</b></button>
         </div>
-        <script>
-            function triggerLink() {
-        window.location.href = "http://127.0.0.1:8000/start";
-        }
-        </script>
     </nav>
-    <div style="border: 1px #3a414a solid;"></div>
 
-    <main style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-        <section style="width: 600px;display: flex;flex-direction: column;">
-            <h1 id="title_main" style="width: 500px;text-align: center; height: 30px;"></h1>
-            <h3 style="width: 600px;text-align: center;">Whether you’re just starting or looking to level up, CandiDar offers unique tools to practice, improve, and excel in every interview. Take control of your future today!</h3>
-        </section>
-        <section style="display: flex;flex-direction: column;gap: 20px; justify-content: center;align-items: center;">
-           
-            <button onclick="triggerLink()" type="button" style="border: 2px #3a414a solid; border-radius: 20px;height: 32px;width: 120px;cursor: pointer;">Get Started</button>
-           
-            <div style="border: 2px #3a414a solid; width: 255px;height: 250px;border-radius: 12px;">
-                <div style="margin: 0px 10px; display: flex;flex-direction: row;justify-content: space-between;">
-                    <h3>logo</h3>
-                    <h3><img src="https://cdn-icons-png.freepik.com/256/9777/9777339.png?ga=GA1.1.412377053.1731138302&semt=ais_hybrid" alt="" srcset="" width="32px" height="32px"></h3>
-                </div>
+    <main id="main">
 
-                <div>
-                    <div style="height: 30px; font-size: 12px; margin: 20px;margin-left: 50px; width: 200px; border-radius: 12px;background-color: #dedeff; display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;">
-                        Ready to nail your interview? Candi Dar’s got you!
-                    </div>
-    
-                    
-                    <div style="margin-right: 100px; gap: 8px; display: flex;flex-direction: row;justify-content: center;align-items: center;">
-                        <div style="border: 2px #3a414a solid;height: 25px;width: 25px;border-radius: 15px;"></div>
-                        <div style="height: 30px; background-color: #dedeff;border-radius: 12px;height: 25px;width: 110px;text-align: center;font-size: 12px;display: flex;flex-direction: column;justify-content: center;align-items: center;">
-                            I’m feeling anxious.
-                        </div>
-
-                    </div>
-    
-                    <div style="height: 30px; font-size: 12px; margin: 20px;margin-left: 50px; width: 190px; border-radius: 12px;background-color:#dedeff;display: flex;justify-content: center;align-items: center;text-align: center;">
-                        I’ll help you prepare and build your confidence!
-                    </div>
-    
-                </div>
-
+        <section id="s_1">
+                <p id="h_block"><b>The Home for Ambitious Candidates in Morocco </b><span><p id="p_block">Whether you’re just starting or looking to level up, CandiDar offers unique tools to practice ,improve, and excel in every interview. Take control of your future today!</p></span></p>
+                
+                
+            <div>
+                <button onclick="triggerLink()"  id="btn_start2"><b>Get Started</b></button>
             </div>
         </section>
+
+        <section id="s2">
+            <div id="app_view">
+                <!-- <img src="icons/icon_background_body.svg" alt="" srcset="" style="position: absolute;top: 0%;right: 9%;"> -->
+                <p style="width: 150px;position: absolute;top: 116%;right:40%;font-size: 12px;font-weight: 400px;font-family: 'Inter', sans-serif;">Don’ t worry I’ll help you prepare and build your confidence!</p>
+                <img id="ico_1" src="static/icons/main_app.svg" alt="" srcset="">
+                <img id="ico_2" src="static/icons/main_app2.svg" alt="" srcset="" height="40%" width="50%">
+            </div>
+        </section>
+
+       
+       
+
     </main>
 
 
     <script>
-        const title = document.querySelector("#title_main");
-        let texte = "CandiDar: The Home for Ambitious Candidates in Morocco";
-    
-        function randtime(max, min) {
-            return Math.floor(Math.random() * (max - min) + min);
-        }
-    
-        let index = 0;
-        let timer;
-    
-        function display() {
-            let message = texte.slice(0, index);
-            if (index >= texte.length) {
-                index = 0;
-            }
-            title.innerHTML = message;
-            index++;
-    
-            // Redémarrer l'intervalle avec un temps aléatoire
-            clearInterval(timer);
-            timer = setInterval(display, randtime(50, 300));
-        }
-        display();
-        // Initialiser le premier intervalle
-        timer = setInterval(display, 300);
-    </script>
-    
-<script>
-    const OpenAI = require('openai');
-const client = new OpenAI({
-    baseURL: 'https://api.studio.nebius.ai/v1/',
-    apiKey: process.env.NEBIUS_API_KEY,
-});
-
-client.chat.completions.create({
-  "temperature": 0.6,
-  "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
-  "messages": [
-    {
-      "role": "user",
-      "content": "bonjour comment ça va?"
+        function triggerLink() {
+    window.location.href = "http://127.0.0.1:8000/start";
     }
-  ]
-})
-    .then((completion) => console.log(completion));
+    </script>
 
-</script>
 
 </body>
 </html>
+
+

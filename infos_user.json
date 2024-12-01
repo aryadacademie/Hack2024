@@ -1,0 +1,21 @@
+{
+    "candidat": {
+        "role": "olanda",
+        "interviewer": "farya"
+    },
+    "job": {
+        "titre": "",
+        "description": "",
+        "campagne": ""
+    },
+    "test_quiz": {
+        "questions": [],
+        "temps_fin_test": "",
+        "evaluations": []
+    },
+    "interview": {
+        "questions": [],
+        "temps_fin_interview": "",
+        "evaluations": []
+    }
+}
